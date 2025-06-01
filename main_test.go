@@ -47,8 +47,8 @@ func sqlcUpserts(ctx context.Context, q *db.Queries, rows []MyRow) error {
 }
 
 // stagingCopyUpsert does:
-//  1. COPY FROM stdin → benchmark_staging
-//  2. INSERT … ON CONFLICT DO NOTHING FROM benchmark_staging → benchmark_test
+//  1. COPY FROM -> benchmark_staging
+//  2. INSERT … ON CONFLICT DO NOTHING FROM benchmark_staging -> benchmark_test
 //  3. TRUNCATE benchmark_staging
 func stagingCopyUpsert(ctx context.Context, pool *pgxpool.Pool, q *db.Queries, rows []MyRow) error {
 	tx, err := pool.Begin(ctx)
